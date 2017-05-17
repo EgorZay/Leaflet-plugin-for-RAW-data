@@ -32,7 +32,7 @@ select.onchange = function () {
 
 function addClick(url, name, rasterChannel) {
     if (url == "" || name == "") {
-        alert('URL or name field is empty');
+        alert('Either URL of name field is empty');
         return;
     }
 
@@ -47,7 +47,7 @@ function addClick(url, name, rasterChannel) {
     }
 
     if (rasterChannel < 0) {
-        alert('Raster channel cannot be negative number');
+        alert('Raster channel must be a positive number');
         return;
     }
 
@@ -64,30 +64,30 @@ function addClick(url, name, rasterChannel) {
                 if (colorScale != undefined)
                     addRowWith(name, colorScale, rasterMap.rasterLayers[name].processTime);
             } catch (error) {
-                alert("Error: the layer hasn't been added.");
+                alert("Warning: the layer has not been added");
             }
         };
         xhr.send();
     } catch (error) {
-        alert("Error: the file hasn't been uploaded.");
+        alert("Warning: the file has not been uploaded");
     }
 }
 
 /**
- * Adding new layer to table with all needed elements
+ * Adding new layer to table with all vital elements
  * @param name
  * @param colorScale
  * @param time
  */
 function addRowWith(name, colorScale, time) {
-    // Adding  URL to table
+    // Adding URL to table
     var table = document.getElementById("addedLayers");
     var size = table.size;
     var row = table.insertRow(size);
 
     row.insertCell(0).innerHTML = name;
 
-    // Creating delete button
+    // Creating 'delete' button
     var btn = document.createElement("BUTTON");
     btn.style.backgroundColor = "#f44336";
     btn.style.color = "white";
